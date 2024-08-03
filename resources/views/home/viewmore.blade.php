@@ -193,42 +193,6 @@
     </div>
   </div>
 
-<footer class="footer-section">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-5 d-flex flex-column align-items-center">
-                <p class="quote mt-5 text-center">“Once in a while, right in the middle<br>of ordinary life, love gives us a fairy tale”</p>
-                <div class="mt-5">
-                    <p class="get">Get In Touch With Us</p>
-                    <hr class="hrtag"/>
-                </div>
-                <div class="social-icons mt-3">
-                    <a href="#"><img src="images/facebook.svg" alt="Facebook"></a>
-                    <a href="#"><img src="images/youtube.svg" alt="YouTube"></a>
-                    <a href="#"><img src="images/messenger.svg" alt="Instagram"></a>
-                </div>
-             
-            </div>
-            <div class="col-md-2 d-flex justify-content-center align-items-center">
-                <img src="images/logo1.png" alt="Israni Photography & Films" class="footer-logo">
-            </div>
-            <div class="col-md-5 d-flex flex-column align-items-center">
-                <div class="contact-info mt-5 text-left">
-                    <h5>Address (Mumbai)</h5>
-                    <p><i class="fas fa-map-marker-alt"></i> Om Heera Panna Mall, Office No. 205,<br> 2nd Floor, Oshiwara Police Station<br> Oshiwara, Mumbai, Maharashtra 400093</br>
-                    <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
-                    <p><i class="fas fa-phone"></i> +91-9821192777</p>
-
-                    <h5>Address (Bangalore)</h5>
-                    <p><i class="fas fa-map-marker-alt"></i> No.48, 3rd floor, 9th A Main Rd,<br> Indira Nagar 1st Stage, Bengaluru,<br> Karnataka 560038</p>
-                    <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
-                    <p><i class="fas fa-phone"></i> +91-77189 37444</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
 
 @endsection
 

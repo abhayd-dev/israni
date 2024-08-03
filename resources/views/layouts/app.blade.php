@@ -19,11 +19,51 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <!-- Splide CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body>
   
         @yield('content')
+ 
+        
+    <footer class="footer-section">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-5 d-flex flex-column align-items-center">
+                    <p class="quote mt-5 text-center">“Once in a while, right in the middle<br>of ordinary life, love gives us a fairy tale”</p>
+                    <div class="mt-5">
+                        <p class="get">Get In Touch With Us</p>
+                        <hr class="hrtag"/>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="#"><img src="images/facebook.svg" alt="Facebook"></a>
+                        <a href="#"><img src="images/youtube.svg" alt="YouTube"></a>
+                        <a href="#"><img src="images/messenger.svg" alt="Instagram"></a>
+                    </div>
+                 
+                </div>
+                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                    <img src="images/logo1.png" alt="Israni Photography & Films" class="footer-logo">
+                </div>
+                <div class="col-md-5 d-flex flex-column align-items-center">
+                    <div class="contact-info mt-5 text-left">
+                        <h5>Address (Mumbai)</h5>
+                        <p><i class="fas fa-map-marker-alt"></i> Om Heera Panna Mall, Office No. 205,<br> 2nd Floor, Oshiwara Police Station<br> Oshiwara, Mumbai, Maharashtra 400093</br>
+                        <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
+                        <p><i class="fas fa-phone"></i> +91-9821192777</p>
     
+                        <h5>Address (Bangalore)</h5>
+                        <p><i class="fas fa-map-marker-alt"></i> No.48, 3rd floor, 9th A Main Rd,<br> Indira Nagar 1st Stage, Bengaluru,<br> Karnataka 560038</p>
+                        <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
+                        <p><i class="fas fa-phone"></i> +91-77189 37444</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
         <!-- jQuery (necessary for Masonry and Bootstrap) -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Bootstrap 4.5.2 JS -->
@@ -39,6 +79,10 @@
         <!-- Splide JS -->
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     
         <script>
          
@@ -280,7 +324,19 @@
                 .catch(error => console.error('Error loading countries:', error));
         });
     
-    
+        $(document).ready(function() {
+        // Check if the current page contains the wedding form
+        if ($('#wedding-form').length) {
+            // Check if there is a success message in the session
+            @if (session('success'))
+                toastr.success('{{ session('success') }}', 'Success', {
+                    positionClass: 'toast-top-right',
+                    closeButton: true,
+                    progressBar: true
+                });
+            @endif
+        }
+    });
         </script>
     
     </body>

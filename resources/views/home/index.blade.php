@@ -195,38 +195,40 @@
         <div class="col-sm-11 text-center mt-5">
         <h2 class="text-dark heading2">Plan your <span style="color:#FF6682;">wedding</span> with us</h2>
         </div>
-        <form>
-          
-          <div class="form-group col-sm-9 mx-auto mt-4">
-          <label for="name">Your Name</label>
-            <input type="text" class="form-control" id="name" placeholder=" ">
-          </div>
-          <div class="row">
-          <div class="form-group col-sm-9 d-flex mx-auto mt-4">
-        <div class="col-sm-6">
-          <label for="name">Phone Number</label>
-            <input type="text" class="form-control " id="phone" placeholder=" ">
+        <form id="wedding-form" action="{{ route('submit.wedding') }}" method="POST">
+            @csrf
+            <div class="form-group col-sm-9 mx-auto mt-4">
+                <label for="name">Your Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder=" " required>
             </div>
-            <div class="col-sm-6">
-            <label for="name">Email</label>
-            <input type="email" class="form-control " id="email" placeholder="">
+            <div class="row">
+                <div class="form-group col-sm-9 d-flex mx-auto mt-4">
+                    <div class="col-sm-6">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder=" " required>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="" required>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-          <div class="form-group col-sm-9 mx-auto">
-          <label for="name">Describe What are your needs!</label>
-            <textarea class="form-control" id="needs" rows="4" placeholder=""></textarea>
-          </div>
-          <div class="form-group  text-center">
-          <button type="submit" class="btn-submit">Submit</button>
-          </div>
+            <div class="form-group col-sm-9 mx-auto">
+                <label for="needs">Describe What are your needs!</label>
+                <textarea class="form-control" name="needs" id="needs" rows="4" placeholder="" required></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn-submit">Submit</button>
+            </div>
         </form>
+        
       </div>
       <div class="col-md-5 image-section">
         <img src="images/image15.png" alt="Wedding Image">
       </div>
     </div>
   </div>
+ 
 
   <section class="sponsors-section text-center">
         <div class="container">
@@ -259,42 +261,6 @@
 
 
 
-    <footer class="footer-section">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-5 d-flex flex-column align-items-center">
-                    <p class="quote mt-5 text-center">“Once in a while, right in the middle<br>of ordinary life, love gives us a fairy tale”</p>
-                    <div class="mt-5">
-                        <p class="get">Get In Touch With Us</p>
-                        <hr class="hrtag"/>
-                    </div>
-                    <div class="social-icons mt-3">
-                        <a href="#"><img src="images/facebook.svg" alt="Facebook"></a>
-                        <a href="#"><img src="images/youtube.svg" alt="YouTube"></a>
-                        <a href="#"><img src="images/messenger.svg" alt="Instagram"></a>
-                    </div>
-                 
-                </div>
-                <div class="col-md-2 d-flex justify-content-center align-items-center">
-                    <img src="images/logo1.png" alt="Israni Photography & Films" class="footer-logo">
-                </div>
-                <div class="col-md-5 d-flex flex-column align-items-center">
-                    <div class="contact-info mt-5 text-left">
-                        <h5>Address (Mumbai)</h5>
-                        <p><i class="fas fa-map-marker-alt"></i> Om Heera Panna Mall, Office No. 205,<br> 2nd Floor, Oshiwara Police Station<br> Oshiwara, Mumbai, Maharashtra 400093</br>
-                        <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
-                        <p><i class="fas fa-phone"></i> +91-9821192777</p>
-    
-                        <h5>Address (Bangalore)</h5>
-                        <p><i class="fas fa-map-marker-alt"></i> No.48, 3rd floor, 9th A Main Rd,<br> Indira Nagar 1st Stage, Bengaluru,<br> Karnataka 560038</p>
-                        <p><i class="fas fa-envelope"></i> enquiry@israniphotography.com</p>
-                        <p><i class="fas fa-phone"></i> +91-77189 37444</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
 
 @endsection
 

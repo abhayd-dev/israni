@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Wedding;
 class HomeController extends Controller
 {
     
@@ -56,6 +57,26 @@ class HomeController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Your message has been sent successfully ! We will contact you Soon.......');
+    }
+
+    public function submitWedding(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name'    => 'required|string|max:255',
+            'phone'   => 'required|string|max:20',
+            'email'   => 'required|email|max:255',
+            'needs'   => 'required|string',
+        ]);
+
+        Wedding::create([
+            'name'    => $validatedData['name'],
+            'phone'   => $validatedData['phone'],
+            'email'   => $validatedData['email'],
+            'needs'   => $validatedData['needs'],
+        ]);
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully! We will contact you soon.');
+
     }
 
 
