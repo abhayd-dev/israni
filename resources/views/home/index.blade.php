@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('title', 'Home')
-
+@section('css')
+ <!-- Slick Carousel CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+ <!-- Splide CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
 @section('content')
 <div class="bg-image">
     <video autoplay muted loop id="bg-video">
-        <source src="{{ asset('video/sidhartha.mp4') }}" type="video/mp4">
+        
+        <source src="{{ asset($common->homepage_main_video) }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <img src="{{ asset('images/logo1.png') }}" alt="Logo" class="logo">
@@ -38,23 +46,8 @@
     
         
    
-    <h1 class="display-4">WE BELIEVE IN CAPTURING MOMENTS!</h1>
-    <div class=" lead">
-        <p class="para"><i>Israni Photography is a team of young Creative photographers & cinematographers
-       specializing in creating stories for a lifetime. As a brand, they believe in understanding the needs,
-      desires, and requirements of a family to create tailor-made, handcrafted wedding films.</i></p>
-    </div>
- 
-    <div class="lead">
-        <p class="para"><i>The Israni Siblings believe in making every wedding look no less than a Bollywood film, along 
-       with a striking balance  between creativity & technology, to make each  product a masterpiece.</i></p>
-    </div>
-
-    <div class="lead">
-    
-        <p class="para"><i>We have been creating memories for over a decade. Our Mission is to weave stories
-        that make you relive the memories for years to come.</i></p>
-    </div>  
+    <h1 class="display-4">{{ $common->homepage_title }}</h1>
+    {!! $common->homepage_description !!}
 </div>
 <div class="box2">
     <h2 class="text-center">FEATURED STORIES</h2>
@@ -62,47 +55,26 @@
         <div class="splide">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <div class="cardm mb-5">
-                            <div class="card-image">
-                                <img src="{{ asset('images/image2.png') }}" alt="Karishma & Varun">
+                    @foreach($viewmoreItems as $item)
+                        <li class="splide__slide">
+                            <div class="cardm mb-5">
+                                <div class="card-image">
+                                    <img src="{{ asset('storage/' . $item->image1) }}" alt="{{ $item->couple_name }}">
+                                </div>
+                                <div class="card-body">
+                                    <h3>{{ $item->couple_name }}</h3>
+                                    <p class="subtitle">{{ $item->title }}</p>
+                                    <p class="description">{{ Str::limit($item->description, 260) }}</p>
+                                    <a href="{{ route('viewmore', $item->id) }}" class="btn">View More</a>
+                                    {{-- <a href="" class="btn">View More</a> --}}
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h3>Karishma & Varun</h3>
-                                <p class="subtitle">Romance in the city...</p>
-                                <p class="description">We felt it from our hearts when Karishma described Varun as the last piece of jigsaw puzzle that made her life complete. In three days, we were fortunate to capture...</p>
-                                <a href="{{ route('viewmore') }}" class="btn ">View More</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide">
-                        <div class="cardm mb-5">
-                            <div class="card-image">
-                                <img src="{{ asset('images/image3.png') }}" alt="Nandini & Sahil">
-                            </div>
-                            <div class="card-body">
-                                <h3>Nandini & Sahil</h3>
-                                <p class="subtitle">A fairy tale story...</p>
-                                <p class="description">We felt it from our hearts when Karishma described Varun as the last piece of jigsaw puzzle that made her life complete. In three days, we were fortunate to capture...</p>
-                                <a href="{{ route('viewmore') }}" class="btn ">View More</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide">
-                        <div class="cardm mb-5">
-                            <div class="card-image">
-                                <img src="{{ asset('images/image4.png') }}" alt="Salman & Joya">
-                            </div>
-                            <div class="card-body">
-                                <h3>Salman & Joya</h3>
-                                <p class="subtitle">Romance in the city...</p>
-                                <p class="description">We felt it from our hearts when Karishma described Varun as the last piece of jigsaw puzzle that made her life complete. In three days, we were fortunate to capture...</p>
-                                <a href="{{ route('viewmore') }}" class="btn ">View More</a>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
+        </div>
+        
         </div>
     </div>
 </div>
@@ -262,5 +234,103 @@
 
 
 
+@endsection
+
+@section('script')
+  <!-- Slick Carousel JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <!-- Splide JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+        var splide = new Splide('.splide', {
+            type: 'loop',
+            perPage: 3,
+            focus: 'center',
+            gap: '0.05rem',
+            pagination: false,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                },
+                1024: {
+                    perPage: 2,
+                },
+            },
+        });
+        splide.mount();
+    });
+
+    $(document).ready(function() {
+        $('.slick-slider').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: false,
+            arrows: true,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+        $('.slick-slider2').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: false,
+            arrows: true,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+    </script>
 @endsection
 

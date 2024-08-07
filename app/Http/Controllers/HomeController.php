@@ -5,26 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Wedding;
+use App\Models\Common;
+use App\Models\ViewMore;
+use App\Models\Aim;
 class HomeController extends Controller
 {
     
     public function index(){
-        return view('home.index');
+        $common = Common::first(); 
+        $viewmoreItems = ViewMore::all();
+        return view('home.index', compact('common','viewmoreItems'));
     }
     public function films(){
-        return view('home.film');
+        $common = Common::first(); 
+        return view('home.film', compact('common'));
     }
-    public function viewmore(){
-        return view('home.viewmore');
+    public function viewmore($id){
+        $common = Common::first(); 
+        $viewmoreItem = ViewMore::findOrFail($id);
+        $bulkImages = json_decode($viewmoreItem->bulk_image);
+        return view('home.viewmore', compact('common','viewmoreItem','bulkImages'));
     }
     public function faq(){
-        return view('home.faq');
+        $common = Common::first(); 
+
+        return view('home.faq', compact('common'));
     }
-    public function contact(){
-        return view('home.contact');
+    public function contact()
+    {
+       
+        $common = Common::first(); 
+
+        return view('home.contact', compact('common'));
     }
     public function about(){
-        return view('home.about');
+        $common = Common::first(); 
+        $aims = Aim::all();
+        return view('home.about', compact('common','aims'));
     }
     public function submitContact(Request $request)
     {
@@ -78,6 +95,7 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Your message has been sent successfully! We will contact you soon.');
 
     }
+    
 
 
 }

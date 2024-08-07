@@ -1,14 +1,62 @@
+
 @extends('layouts.app')
 
 @section('title', 'Films')
 
-@section('content')
-<div class="bg-image2">
-    <!-- Background image -->
-    <img src="{{ asset('images/image30.png') }}" alt="Background Image" id="background-image" class="active img1">
+@section('css')
 
-    <video id="background-video" class="hidden" style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="video/video1.mp4" type="video/mp4">
+<style>
+    .video-thumbnail {
+    position: relative;
+    width: 300px; 
+    height: 350px; 
+    overflow: hidden;
+    margin: 20px;
+}
+
+.thumbnail-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thumbnail-content img {
+    width: 100%;
+    height: auto;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('images/play-icon.png') no-repeat center center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.youtube-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+</style>
+@endsection
+
+@section('content')
+<div class="bg-image">
+    <!-- Background image -->
+   
+    <video autoplay muted loop id="bg-video">
+        <source src="{{ asset($common->film_main_video) }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -38,50 +86,63 @@
             </ul>
         </div>
     </nav>
-
-
-    <button id="play-button" class="btn btn-primary d-none">Play Video</button>
 </div>
 
-<div class="video-container">
-    <div class="video-thumbnail mt-5 mb-5 " data-video-src="video/pulkit.mp4">
-        <img src="images/image31.png" alt="Rohan & Sonakshi">
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-        <div class="video-title">Rohan & Sonakshi</div>
-        <div class="video-location">Bangalore, India</div>
+<<div class="video-thumbnail mt-5 mb-5" data-video-id="SxTYjptEzZs">
+    <div class="thumbnail-content">
+        <img src="images/image31.png" alt="Video Thumbnail">
+        <div class="play-button"></div>
+        <div class="video-title">Video Title 1</div>
+        <div class="video-location">Location 1</div>
     </div>
-
-    <div class="video-thumbnail mt-5 mb-5" data-video-src="video/rakul.mp4">
-        <img src="images/image32.png" alt="Nupur & Ayush">
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-        <div class="video-title">Nupur & Ayush</div>
-        <div class="video-location">The unreal love story...</div>
-    </div>
+    <iframe class="youtube-video" src="https://www.youtube.com/embed/SxTYjptEzZs?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: none;"></iframe>
 </div>
+
+<div class="video-thumbnail mt-5 mb-5" data-video-id="SxTYjptEzZs">
+    <div class="thumbnail-content">
+        <img src="images/image32.png" alt="Video Thumbnail">
+        <div class="play-button"></div>
+        <div class="video-title">Video Title 2</div>
+        <div class="video-location">Location 2</div>
+    </div>
+    <iframe class="youtube-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: none;"></iframe>
+</div>
+
+
 
 <div class="container-fluid hero-section">
     <div class="row no-gutters justify-content-center align-items-center">
-      <div class="col-md-12 text-center">
-        <div class="hero-image" style="background-image: url('images/image51.jpg');">
-          <div class="hero-overlay"></div>
-          <div class="hero-content">
-            <a href="{{ url('contact') }}" class="btn btn-outline-light">ENQUIRE</a>
-          </div>
+        <div class="col-md-12 text-center">
+            <div class="hero-image" style="background-image: url('{{ asset('images/image51.jpg') }}');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <a href="{{ url('contact') }}" class="btn btn-outline-light">ENQUIRE</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
-
-
+</div>
 
 @endsection
 
+@section('script')
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+         document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            const playButton = thumbnail.querySelector('.play-button');
+            const iframe = thumbnail.querySelector('.youtube-video');
+            const videoId = thumbnail.getAttribute('data-video-id');
+console.log(videoId);
+            playButton.addEventListener('click', function() {
+                console.log(`Playing video with ID: ${videoId}`); // Debug log
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                iframe.style.display = `block`; // Show the iframe
+                thumbnail.querySelector('.thumbnail-content').style.display =
+                'none'; // Hide the thumbnail content
+            });
+        });
 
-
+</script>
+@endsection
 
 

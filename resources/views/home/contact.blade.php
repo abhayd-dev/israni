@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'FAQ')
+@section('title', 'Contact')
+
+@section('css')
+
+@endsection
 
 @section('content')
 <div class="bg-image3">
-    <img src="images/image44.jpg" alt="" id="bg-video">
+    <img src="{{ asset('storage/' . $common->contact_image) }}" alt="" id="bg-video">
     <img src="{{ asset('images/logo1.png') }}" alt="Logo" class="logo">
     <nav class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler ml-auto bg-transparent" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,24 +70,21 @@
                     @endif
                 </div>
                 <div class="form-group">
+                    <label for="country">Country</label>
+                    <select class="form-control" name="country" id="country">
+                        <option>India</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    @if($errors->has('country'))
+                        <div class="text-danger">{{ $errors->first('country') }}</div>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label for="phone">Phone</label>
-                    <div class="row">
-                        <div class="col">
-                            <select class="form-control" name="country" id="country">
-                                <option>India</option>
-                                <!-- Add more countries as needed -->
-                            </select>
-                            @if($errors->has('country'))
-                                <div class="text-danger">{{ $errors->first('country') }}</div>
-                            @endif
-                        </div>
-                        <div class="col">
-                            <input type="tel" class="form-control" name="phone" id="phone" value="{{ old('phone') }}">
-                            @if($errors->has('phone'))
-                                <div class="text-danger">{{ $errors->first('phone') }}</div>
-                            @endif
-                        </div>
-                    </div>
+                    <input type="tel" class="form-control" name="phone" id="phone" value="{{ old('phone') }}">
+                    @if($errors->has('phone'))
+                        <div class="text-danger">{{ $errors->first('phone') }}</div>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="dates">Dates</label>
@@ -136,6 +137,28 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            fetch('{{ asset('countries.json') }}')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('country');
+                    data.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.name;
+                        option.textContent = country.name;
+                        select.appendChild(option);
+                    });
 
+                    // Re-select the old value if any
+                    if ("{{ old('country') }}") {
+                        select.value = "{{ old('country') }}";
+                    }
+                })
+                .catch(error => console.error('Error loading countries:', error));
+        });
+</script>
 @endsection

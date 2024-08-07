@@ -1,7 +1,10 @@
 
+@extends('layouts.admin')
+@section('css')
+
 <style>
     body{
-       background:  rgb(229 160 50 / 22%) !important;
+       background:  rgb(229 160 50 / 15%) !important;
         color:black !important;
     }
     h1.h2 {
@@ -52,7 +55,7 @@
         background-color: #f0f0f0;
     }
 </style>
-@extends('layouts.admin')
+@endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -197,4 +200,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+
 @endsection

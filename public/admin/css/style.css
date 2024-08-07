@@ -1,7 +1,7 @@
 
 
 .navbar {
-    background: linear-gradient(to right, rgb(54, 13, 30), #fd8ab0);
+    background: linear-gradient(to left, rgb(239, 34, 54), rgb(248, 36, 121));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -153,4 +153,88 @@
     text-align: center; */
     font-size: small;
  
+}
+.box1{
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #fff;
+}
+.form-group input{
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(211, 184, 238);
+    background: rgb(244, 243, 237);
+}
+.form-group select{
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid rgb(211, 184, 238);
+    background: rgb(250, 248, 231);
+}
+.form-group option{
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid rgb(211, 184, 238);
+    background: rgb(23, 23, 23);
+    color: #fff;
+
+}
+.form-group button{
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgb(180, 16, 235);
+
+   color: #fff;
+    
+
+}
+.form-group textarea{
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid rgb(211, 184, 238);
+    background: rgb(244, 243, 237);
+}
+.form_image{
+    position: absolute;
+    top: -70%;
+    left: 60%;
+    border-radius: 10px;
+    border: 4px groove rgb(158, 12, 133);
+}
+#featured-table {
+    width: 100%; 
+    border-radius: 20px;
+    color: rgb(129, 4, 110);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.dataTables_wrapper .dataTables_scroll {
+    max-height: 600px; 
+}
+
+
+.dataTables_wrapper {
+    width: 100%; 
+}
+#featured-table img {
+    width: 80px; 
+    height: 100px; 
+    object-fit: cover;
+}
+.dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    background: #f9f9f9;
+}
+.dropzone .dz-message {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+.btni{
+    background: linear-gradient(to left, rgb(239, 34, 54), rgb(248, 36, 121));
+    color: white;
 }

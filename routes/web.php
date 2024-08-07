@@ -22,22 +22,38 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     
     // Home routes
-    Route::prefix('home')->group(function () {
-        Route::get('/main-video', [AdminController::class, 'homeMainVideo'])->name('admin.home.main_video');
-        Route::get('/description', [AdminController::class, 'homeDescription'])->name('admin.home.description');
-        Route::get('/featured', [AdminController::class, 'homeFeatured'])->name('admin.home.featured');
-        Route::get('/wedding', [AdminController::class, 'homeWedding'])->name('admin.home.wedding');
-        Route::get('/instagram', [AdminController::class, 'homeInstagram'])->name('admin.home.instagram');
-        Route::get('/sponsors', [AdminController::class, 'homeSponsors'])->name('admin.home.sponsors');
+    Route::prefix('admin')->group(function () {
+        // Route to show the form for common data (GET request)
+        Route::get('/common_data', [AdminController::class, 'common_create'])->name('common.create');
+    
+        // Route to handle form submission for common data (POST request)
+        Route::post('/common/store', [AdminController::class, 'store'])->name('common.store');
     });
 
  
 
-    // Films routes
-    Route::prefix('films')->group(function () {
-        Route::get('/main-video', [AdminController::class, 'filmsMainVideo'])->name('admin.films.main_video');
-        Route::get('/video-link', [AdminController::class, 'filmsVideoLink'])->name('admin.films.video_link');
+    // Featured routes
+    Route::prefix('featured')->group(function () {
+        Route::get('/create', [AdminController::class, 'featured_create'])->name('featured.create');
+        Route::post('/store', [AdminController::class, 'featured_store'])->name('viewmore.store');
+        Route::get('/', [AdminController::class, 'getFeatured'])->name('featured.index');
+        Route::get('/data', [AdminController::class, 'getFeaturedData'])->name('featured.data');
+        Route::get('/{id}/edit', [AdminController::class, 'editFeatured'])->name('featured.edit');
+        Route::post('/{id}', [AdminController::class, 'updateFeatured'])->name('featured.update');
+        Route::delete('/{id}', [AdminController::class, 'deleteFeatured'])->name('featured.delete');
     });
+    
+    Route::prefix('aim')->group(function () {
+        Route::get('/create', [AdminController::class, 'create_aim'])->name('admin.aims.create');
+        Route::post('/store', [AdminController::class, 'store_aim'])->name('admin.aims.store');
+        Route::get('/index', [AdminController::class, 'index_aim'])->name('admin.aims_index');
+        Route::get('/aims/{id}/edit', [AdminController::class, 'aim_edit'])->name('aims.edit');
+        Route::put('/aims/{id}', [AdminController::class, 'aim_update'])->name('aims.update');
+        Route::delete('/aims/{id}', [AdminController::class, 'aim_destroy'])->name('aims.destroy');
+    
+   
+    });
+   
 
     // About routes
     Route::prefix('about')->group(function () {
@@ -46,6 +62,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
         Route::get('/aim', [AdminController::class, 'aboutAim'])->name('admin.about.aim');
         Route::get('/testimonials', [AdminController::class, 'aboutTestimonials'])->name('admin.about.testimonials');
     });
+
+   
 
     // FAQ routes
     Route::prefix('faq')->group(function () {
@@ -63,7 +81,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 });
 
 Route::get('/films', [HomeController::class, 'films']);
-Route::get('/viewmore', [HomeController::class, 'viewmore'])->name('viewmore');
+Route::get('/viewmore/{id}', [HomeController::class, 'viewmore'])->name('viewmore');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [HomeController::class, 'submitContact'])->name('contact.submit');

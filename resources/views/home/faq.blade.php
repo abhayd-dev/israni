@@ -2,9 +2,13 @@
 
 @section('title', 'FAQ')
 
+@section('css')
+
+@endsection
+
 @section('content')
 <div class="bg-image3">
-   <img src="images/image44.jpg" alt="" id="bg-video">
+   <img src="{{ asset('storage/' . $common->faq_image) }}" alt="" id="bg-video">
     <img src="{{ asset('images/logo1.png') }}" alt="Logo" class="logo">
     <nav class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler ml-auto bg-transparent" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,8 +38,8 @@
 
 <div class="container faq-section box5 my-5">
     <div class="faq-header">
-        <h2>Frequently Asked Questions</h2>
-        <p>Your queries answered. If you have more questions, feel free to contact us!</p>
+        <h2>{{ $common->faq_heading }}</h2>
+        <p>{{ $common->faq_description }}</p>
     </div>
     <div class="faq-item">
         <h5>What is your approach to shoot a wedding?</h5>
@@ -85,5 +89,16 @@
   </div>
 
 
+@endsection
+
+@section('script')
+<script>
+     $(document).ready(function() {
+            $('.faq-item h5').click(function() {
+                $(this).parent().toggleClass('open');
+            });
+        });
+
+</script>
 @endsection
 
