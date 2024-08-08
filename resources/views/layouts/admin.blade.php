@@ -112,27 +112,28 @@
                     
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="faqMenu">
+                    <a href="{{ route('testimonials.show') }}" class="nav-link" id="Testimonials">
                         <i class="fa fa-question-circle"></i>
-                        FAQ
-                        <i class="fa fa-chevron-down expand-icon mx-4"></i>
+                        Testimonials
+                        
                     </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.faq.image') }}">Image</a></li>
-                        <li class="nav-item"><a class="nav-link"
-                                href="{{ route('admin.faq.questions') }}">Questions</a></li>
-                    </ul>
+                  
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Faq">
+                        <i class="fa fa-envelope"></i>
+                        Faq
+                       
+                    </a>
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="contactMenu">
                         <i class="fa fa-envelope"></i>
                         Contact
-                        <i class="fa fa-chevron-down expand-icon mx-1"></i>
+                       
                     </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.contact.show_data') }}">Show
-                                Data</a></li>
-                    </ul>
+                    
                 </li>
                 
             </ul>

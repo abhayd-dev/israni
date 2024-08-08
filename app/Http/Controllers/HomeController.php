@@ -8,6 +8,7 @@ use App\Models\Wedding;
 use App\Models\Common;
 use App\Models\ViewMore;
 use App\Models\Aim;
+use App\Models\Testimonial;
 class HomeController extends Controller
 {
     
@@ -39,9 +40,11 @@ class HomeController extends Controller
         return view('home.contact', compact('common'));
     }
     public function about(){
+
         $common = Common::first(); 
         $aims = Aim::all();
-        return view('home.about', compact('common','aims'));
+        $testimonials = Testimonial::all();
+        return view('home.about', compact('common','aims','testimonials'));
     }
     public function submitContact(Request $request)
     {

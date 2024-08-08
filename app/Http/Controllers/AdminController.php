@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Models\Aim;
+use App\Models\Testimonial;
 
 class AdminController extends Controller
 {
@@ -360,6 +361,42 @@ class AdminController extends Controller
         // Redirect with a success message
         return redirect()->route('admin.aims_index')->with('success', 'Aim deleted successfully');
     }
+    public function showTestimonial(){
+        $testimonials = Testimonial::all();
+        return view('admin.testimonial_create', compact('testimonials'));
+    }
+
+    public function createTestimonial(Request $request)
+    {
+        $request->validate([
+            'author' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        Testimonial::create($request->all());
+
+        return redirect()->back()->with('success', 'Testimonial created successfully.');
+    }
+    public function updateTestimonial(Request $request, Testimonial $testimonial)
+    {
+        $request->validate([
+            'author' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+    
+        $testimonial->update($request->all());
+    
+        return redirect()->back()->with('success', 'Testimonial updated successfully.');
+    }
+    
+
+    public function deleteTestimonial(Testimonial $testimonial)
+    {
+        $testimonial->delete();
+
+        return redirect()->back()->with('success', 'Testimonial deleted successfully.');
+    }
+
 
 
     public function homeWedding()

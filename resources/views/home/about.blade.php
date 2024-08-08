@@ -68,58 +68,6 @@
    </div>
 </div>
 
-<div class="container py-5" style="text-shadow:2px 2px 7px rgba(79, 75, 75, 0.6)">
-    <h3 class="text-center mb-4" style="font-family: 'Salsa', cursive; color: #333;">OUR AIM</h3>
-    <div class="row">
-        <!-- Vision Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100" style="box-shadow: 0 8px 8px 4px rgba(147, 24, 24, 0.7);">
-                <div class="card-body">
-                    <div class="text-center mb-3">
-                        <i class="fas fa-camera-retro fa-3x"></i>
-                    </div>
-                    <h5 class="card-title text-center" style="font-family: 'Salsa', cursive;">VISION</h5>
-                    <p class="card-text text-center">
-                        Our vision is to capture the most precious moments of life, providing clients with timeless memories that they can cherish forever. We aim to be the leading photography service provider, known for our creativity, innovation, and excellence.
-                        Our vision is to capture the most precious moments of life, providing clients with timeless memories that they can cherish forever. We aim to be the leading photography service provider, known for our creativity, innovation, and excellence.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mission Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100" style="box-shadow: 0 8px 8px 4px rgba(147, 24, 24, 0.7);">
-                <div class="card-body">
-                    <div class="text-center mb-3">
-                        <i class="fas fa-bullseye fa-3x"></i>
-                    </div>
-                    <h5 class="card-title text-center" style="font-family: 'Salsa', cursive;">MISSION</h5>
-                    <p class="card-text text-center">
-                        Our mission is to provide high-quality photography services, capturing every emotion and detail with precision and artistry. We are dedicated to delivering exceptional customer service and ensuring that each client's vision is realized.
-                        Our mission is to provide high-quality photography services, capturing every emotion and detail with precision and artistry. We are dedicated to delivering exceptional customer service and ensuring that each client's vision is realized.
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Values Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100" style="box-shadow:0 8px 8px 4px rgba(147, 24, 24, 0.7);">
-                <div class="card-body">
-                    <div class="text-center mb-3">
-                        <i class="fas fa-gem fa-3x"></i>
-                    </div>
-                    <h5 class="card-title text-center" style="font-family: 'Salsa', cursive;">VALUES</h5>
-                    <p class="card-text text-center">
-                        Our core values include creativity, professionalism, integrity, and client satisfaction. We strive to create a positive and memorable experience for every client, continuously improving our skills and services to exceed expectations.
-                        Our core values include creativity, professionalism, integrity, and client satisfaction. We strive to create a positive and memorable experience for every client, continuously improving our skills and services to exceed expectations.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container py-5" style="text-shadow:2px 2px 7px rgba(79, 75, 75, 0.6)">
     <h3 class="text-center mb-4" style="font-family: 'Salsa', cursive; color: #333;">OUR AIM</h3>
@@ -129,7 +77,8 @@
                 <div class="card h-100" style="box-shadow: 0 8px 8px 4px rgba(147, 24, 24, 0.7);">
                     <div class="card-body">
                         <div class="text-center mb-3">
-                            <i class="fas fa-camera-retro fa-3x"></i> 
+                            {{-- <i class="fas fa-camera-retro fa-3x"></i>  --}}
+                            <img src="{{ asset('storage/' . $aim->image)}}" height="50" width="50" alt="">
                         </div>
                         <h5 class="card-title text-center" style="font-family: 'Salsa', cursive;">{{ $aim->title }}</h5>
                         <p class="card-text text-center">
@@ -142,12 +91,14 @@
     </div>
 </div>
 
+
+
 <div class="container-fluid py-5" style="font-family: 'Salsa', cursive;text-shadow:2px 2px 7px rgba(79, 75, 75, 0.4)">
     <h1 class="text-center mb-4" style="font-family: 'Salsa', cursive; color: #333;">TESTIMONIALS</h1>
     <div  class="splide" role="group" aria-label="Testimonials">
         <div class="splide__track">
             <ul class="splide__list mx-5">
-                <!-- Testimonial 1 -->
+                @foreach($testimonials as $testimonial)
                 <li class="splide__slide">
                     <div class="card h-100" style="background-color: #333; color: #3e0303;border-radius:10px;box-shadow: 4px 8px 8px 4px rgba(147, 24, 24, 0.7);">
                         <div class="card-body">
@@ -155,42 +106,15 @@
                                 <i class="fas fa-quote-left fa-2x"></i>
                             </div>
                             <p class="card-text text-center" style="font-family: 'Arial', sans-serif;">
-                                "The team at Israni Photography & Films exceeded our expectations in every way. They captured our wedding beautifully, and the photos are absolutely stunning. We couldn't be happier with their service."
+                               {{ $testimonial->content }}
                             </p>
-                            <h5 class="card-title text-center mt-3" style="font-family: 'Salsa', cursive;">- Sarah & John</h5>
+                            <h5 class="card-title text-center mt-3" style="font-family: 'Salsa', cursive;">- {{ $testimonial->author }}</h5>
                         </div>
                     </div>
                 </li>
-
-                <!-- Testimonial 2 -->
-                <li class="splide__slide">
-                    <div class="card h-100" style="background-color: #333; color: #3e0303;border-radius:10px;box-shadow: 4px 8px 8px 4px rgba(147, 24, 24, 0.7);">
-                        <div class="card-body">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-quote-left fa-2x"></i>
-                            </div>
-                            <p class="card-text text-center" style="font-family: 'Arial', sans-serif;">
-                                "Israni Photography & Films made our special day even more memorable. Their attention to detail and creativity shone through in every photo. We highly recommend them to anyone looking for exceptional photography services."
-                            </p>
-                            <h5 class="card-title text-center mt-3" style="font-family: 'Salsa', cursive;">- Emily & Michael</h5>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Testimonial 3 -->
-                <li class="splide__slide">
-                    <div class="card h-100" style="background-color: #333; color: #3e0303;border-radius:10px;box-shadow: 4px 8px 8px 4px rgba(147, 24, 24, 0.7);">
-                        <div class="card-body">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-quote-left fa-2x"></i>
-                            </div>
-                            <p class="card-text text-center" style="font-family: 'Arial', sans-serif;">
-                                "The photos from our event are breathtaking. Israni Photography & Films captured every moment perfectly. Their team was professional, friendly, and incredibly talented. We are so grateful for their work."
-                            </p>
-                            <h5 class="card-title text-center mt-3" style="font-family: 'Salsa', cursive;">- Anna & James</h5>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
+              
+             
             </ul>
         </div>
     </div>

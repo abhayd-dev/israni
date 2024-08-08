@@ -53,7 +53,15 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     
    
     });
-   
+
+
+    Route::prefix('testimonial')->group(function () {
+        Route::get('/', [AdminController::class, 'showTestimonial'])->name('testimonials.show');
+        Route::post('/create', [AdminController::class, 'createTestimonial'])->name('testimonials.create');
+        Route::put('/{testimonial}', [AdminController::class, 'updateTestimonial'])->name('testimonials.update');
+        Route::delete('/{testimonial}', [AdminController::class, 'deleteTestimonial'])->name('testimonials.delete');
+    });
+    
 
     // About routes
     Route::prefix('about')->group(function () {
